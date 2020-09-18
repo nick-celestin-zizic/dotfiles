@@ -63,7 +63,6 @@ import XMonad.Layout.IM (withIM, Property(Role))
     -- Prompts
 import XMonad.Prompt (defaultXPConfig, XPConfig(..), XPPosition(Top), Direction1D(..))
 
-import Data.Word
 ------------------------------------------------------------------------
 ---CONFIG
 ------------------------------------------------------------------------
@@ -72,8 +71,8 @@ myTerminal      = "alacritty -t terminal"      -- Sets default terminal
 myTextEditor    = "vim"     -- Sets default text editor
 myBrowser       = "brave"   -- sets default browser
 myFileManager   = "pcmanfm"
-myBorderWidth   = 1         -- Sets border width for windows
-myWindowGap     = 1
+myBorderWidth   = 0         -- Sets border width for windows
+myWindowGap     = 0
 
 main = do
     xmonad $ ewmh desktopConfig
