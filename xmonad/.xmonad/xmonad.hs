@@ -95,7 +95,8 @@ myStartupHook = do
           spawnOnce "urxvtd &" 
           spawnOnce "nitrogen --restore &"
           spawnOnce "picom -D 3 &"
-          spawnOnce "feh --bg-fill -z -r ~/Pictures/wallpapers" 
+          spawnOnce "feh --bg-fill -z -r ~/Pictures/wallpapers"
+          spawnOnce "xsetroot -cursor_name left_ptr"
           setWMName "LG3D"
           spawnOnce "~/.config/polybar/launch.sh &"
 
