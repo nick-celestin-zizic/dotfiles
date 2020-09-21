@@ -4,15 +4,25 @@ HISTSIZE=10000000
 SAVEHIST=10000000
 HISTFILE=~/.cache/zsh/history
 
+# autocomplete
 autoload -U compinit
 zstyle ':completion:*' menu select
 zmodload zsh/complist
 compinit
 _comp_options+=(globdots)
 
-alias ls="ls --color=auto"
+#vim bindings
+bindkey -v
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+export KEYTIMEOUT=1
+
+alias ls="ls -a --color=auto"
 alias vim="nvim"
 alias c="clear;"
+alias off="shutdown now"
 
 ufetch
 
