@@ -71,7 +71,7 @@ myTerminal      = "alacritty -t terminal"      -- Sets default terminal
 myTextEditor    = "vim"     -- Sets default text editor
 myBrowser       = "brave"   -- sets default browser
 myFileManager   = "pcmanfm"
-myBorderWidth   = 0         -- Sets border width for windows
+myBorderWidth   = 2         -- Sets border width for windows
 myWindowGap     = 0
 
 main = do
@@ -94,7 +94,7 @@ main = do
 myStartupHook = do
           spawnOnce "urxvtd &" 
           spawnOnce "nitrogen --restore &"
-          spawnOnce "picom -D 3 &"
+          spawnOnce "picom --vsync -D 3 &"
           spawnOnce "feh --bg-fill -z -r ~/Pictures/wallpapers"
           spawnOnce "xsetroot -cursor_name left_ptr"
           setWMName "LG3D"
@@ -175,6 +175,7 @@ myKeys =
         , ("M4-f", spawn myFileManager)
         , ("M4-d", spawn "discord")
         , ("M4-w", spawn "feh --bg-fill -z -r ~/Pictures/wallpapers") 
+        , ("M4-h", spawn (myTerminal ++ " -e htop --sort-key=PERCENT_MEM"))
 
     -- Multimedia Keys
         , ("<XF86AudioMute>",        spawn "amixer set Master toggle")
