@@ -97,6 +97,7 @@ myStartupHook = do
           spawnOnce "picom --vsync -D 3 &"
           spawnOnce "feh --bg-fill -z -r ~/Pictures/wallpapers"
           spawnOnce "xsetroot -cursor_name left_ptr"
+          spawnOnce "xset s off"
           setWMName "LG3D"
           spawnOnce "~/.config/polybar/launch.sh &"
 
@@ -176,6 +177,7 @@ myKeys =
         , ("M4-d", spawn "discord")
         , ("M4-w", spawn "feh --bg-fill -z -r ~/Pictures/wallpapers") 
         , ("M4-h", spawn (myTerminal ++ " -e htop --sort-key=PERCENT_MEM"))
+        , ("M4-v", spawn (myTerminal ++ " -e nvim"))
 
     -- Multimedia Keys
         , ("<XF86AudioMute>",        spawn "amixer set Master toggle")
