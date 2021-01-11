@@ -66,10 +66,10 @@ import XMonad.Prompt (defaultXPConfig, XPConfig(..), XPPosition(Top), Direction1
 ------------------------------------------------------------------------
 ---CONFIG
 ------------------------------------------------------------------------
-myModMask       = mod1Mask  -- Sets modkey to super/windows key
-myTerminal      = "alacritty -t terminal"      -- Sets default terminal
+myModMask       = mod4Mask  -- Sets modkey to super/windows key
+myTerminal      = "st"      -- Sets default terminal
 myTextEditor    = "vim"     -- Sets default text editor
-myBrowser       = "brave"   -- sets default browser
+myBrowser       = "brave-browser"   -- sets default browser
 myFileManager   = "pcmanfm"
 myBorderWidth   = 2         -- Sets border width for windows
 myWindowGap     = 0
@@ -172,12 +172,12 @@ myKeys =
         , ("M-<Return>", spawn myTerminal)
 
     -- My Applications (Super+Key)
-        , ("M4-b", spawn myBrowser)
-        , ("M4-f", spawn myFileManager)
-        , ("M4-d", spawn "discord")
-        , ("M4-w", spawn "feh --bg-fill -z -r ~/Pictures/wallpapers") 
-        , ("M4-h", spawn (myTerminal ++ " -e htop --sort-key=PERCENT_MEM"))
-        , ("M4-v", spawn (myTerminal ++ " -e nvim"))
+        , ("M4-C-b", spawn myBrowser)
+        , ("M4-C-f", spawn myFileManager)
+        , ("M4-C-d", spawn "discord")
+        , ("M4-C-w", spawn "feh --bg-fill -z -r ~/Pictures/wallpapers") 
+        , ("M4-C-h", spawn (myTerminal ++ " -e htop --sort-key=PERCENT_MEM"))
+        , ("M4-C-v", spawn (myTerminal ++ " -e nvim"))
 
     -- Multimedia Keys
         , ("<XF86AudioMute>",        spawn "amixer set Master toggle")

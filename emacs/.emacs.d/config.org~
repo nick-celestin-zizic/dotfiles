@@ -1,0 +1,70 @@
+* packages
+** local
+*** odin-mode
+#+BEGIN_SRC emacs-lisp
+  (load-file "~/.emacs.d/packages/odin-mode.el")
+#+END_SRC
+** melpa
+*** which-key
+ #+BEGIN_SRC emacs-lisp
+ (use-package which-key
+   :ensure t
+   :init
+   (which-key-mode))
+ #+END_SRC
+* major mode settings
+** org
+*** fancy bullets
+#+BEGIN_SRC emacs-lisp
+  (use-package org-bullets
+    :ensure t
+    :config
+    (add-hook 'org-mode-hook (lambda () (org-bullets-mode))))
+#+END_SRC
+* minor mode settings
+#+BEGIN_SRC emacs-lisp
+  (menu-bar-mode   -1)
+  (tool-bar-mode   -1)
+  (scroll-bar-mode -1)
+
+  (column-number-mode)
+  ;(global-display-line-numbers-mode t)
+
+
+  (when window-system (global-hl-line-mode t))
+  (when window-system (global-prettify-symbols-mode t))
+#+END_SRC
+* other settings
+#+BEGIN_SRC emacs-lisp
+(setq inhibit-startup-message t)
+(setq scroll-conservatively 100)
+(setq ring-bell-function 'ignore)
+(setq make-backup-file nil)
+(setq auto-save-default nil)
+#+END_SRC
+* unsetting and resetting movement keys
+#+BEGIN_SRC emacs-lisp
+  (global-unset-key (kbd "C-n"))
+  (global-unset-key (kbd "C-p"))
+  (global-unset-key (kbd "C-b"))
+  (global-unset-key (kbd "C-f"))
+
+  (global-unset-key (kbd "C-h"))
+  (global-unset-key (kbd "C-j"))
+  (global-unset-key (kbd "C-k"))
+  (global-unset-key (kbd "C-l"))
+
+  (global-set-key (kbd "C-h") 'backward-char)
+  (global-set-key (kbd "C-j") 'next-line)
+  (global-set-key (kbd "C-k") 'previous-line)
+  (global-set-key (kbd "C-l") 'forward-char)
+
+  (global-set-key (kbd "C-p") 'eval-print-last-sexp)
+  (global-set-key (kbd "C-d") 'kill-whole-line)
+
+  (unbind-key "C-k" org-mode-map)
+  (unbind-key "C-j" lisp-interaction-mode-map)
+  (define-key org-mode-map (kbd "C-j") nil)
+#+END_SRC
+
+

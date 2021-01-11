@@ -5,7 +5,7 @@ SAVEHIST=10000000
 HISTFILE=~/.cache/zsh/history
 
 #Scripts
-export PATH=$PATH$( find $HOME/Scripts/ -type d -printf ":%p" )
+#export PATH=$PATH$( find $HOME/Scripts/ -type d -printf ":%p" )
 
 #FZF
 export FZF_DEFAULT_COMMAND='find ~'

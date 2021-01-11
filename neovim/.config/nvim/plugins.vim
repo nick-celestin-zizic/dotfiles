@@ -32,6 +32,13 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'haya14busa/is.vim'
     " Better terminal
     Plug 'kassio/neoterm'
+    " Haskell Error Checking
+    Plug 'ndmitchell/ghcid', { 'rtp': 'plugins/nvim' }
+    " Haskell
+    Plug 'neovimhaskell/haskell-vim'
+    " Odin
+    Plug 'Tetralux/odin'
+    " Plug 'dense-analysis/ale'
 call plug#end()
 
 autocmd VimEnter *
