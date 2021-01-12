@@ -1,10 +1,22 @@
 * packages
-** local
-*** odin-mode
-#+BEGIN_SRC emacs-lisp
-  (load-file "~/.emacs.d/packages/odin-mode.el")
-#+END_SRC
 ** melpa
+*** popup-kill-ring
+#+BEGIN_SRC emacs-lisp
+  (use-package popup-kill-ring
+    :ensure t
+    :bind ("M-y" . popup-kill-ring))
+#+END_SRC
+*** sudo-edit
+#+BEGIN_SRC emacs-lisp
+  (use-package sudo-edit
+    :ensure t)
+#+END_SRC
+*** hungry-delete
+#+BEGIN_SRC emacs-lisp
+  (use-package hungry-delete
+    :ensure t
+    :config (global-hungry-delete-mode))
+#+END_SRC
 *** which-key
  #+BEGIN_SRC emacs-lisp
  (use-package which-key
@@ -12,14 +24,63 @@
    :init
    (which-key-mode))
  #+END_SRC
+*** avy
+ #+BEGIN_SRC emacs-lisp
+   (use-package avy
+     :ensure t
+     :bind
+     ("C-c C-s" . avy-goto-char))
+ #+END_SRC
+*** rainbow
+#+BEGIN_SRC emacs-lisp
+  (use-package rainbow-mode
+    :ensure t
+    :init (rainbow-mode))
+#+END_SRC
+** local
+*** odin-mode
+#+BEGIN_SRC emacs-lisp
+  (load-file "~/.emacs.d/packages/odin-mode.el")
+#+END_SRC
 * major mode settings
 ** org
+*** config
+#+BEGIN_SRC emacs-lisp
+  (setq org-src-window-setup 'current-window)
+  (add-to-list 'org-structure-template-alist
+	       '("el" "#+BEGIN_SRC emacs-lisp\n?\n#+END_SRC"))
+#+END_SRC
 *** fancy bullets
 #+BEGIN_SRC emacs-lisp
   (use-package org-bullets
     :ensure t
     :config
     (add-hook 'org-mode-hook (lambda () (org-bullets-mode))))
+#+END_SRC
+** ido
+*** enable ido
+#+BEGIN_SRC emacs-lisp
+  (setq ido-enable-flex-matching nil)
+  (setq ido-create-new-buffer 'always)
+  (setq ido-everywhere t)
+  (ido-mode 1)
+
+  ;; vertical autocomplete
+
+  (use-package ido-vertical-mode
+    :ensure t
+    :init
+    (ido-vertical-mode 1))
+
+  (setq ido-vertical-define-keys 'C-n-and-C-p-only)
+#+END_SRC
+*** smex
+#+BEGIN_SRC emacs-lisp
+  (use-package smex
+    :ensure t
+    :init (smex-initialize)
+    :bind
+    ("M-x" . smex))
 #+END_SRC
 * minor mode settings
 #+BEGIN_SRC emacs-lisp
@@ -28,19 +89,57 @@
   (scroll-bar-mode -1)
 
   (column-number-mode)
-  ;(global-display-line-numbers-mode t)
-
+  (global-subword-mode 1)
 
   (when window-system (global-hl-line-mode t))
   (when window-system (global-prettify-symbols-mode t))
 #+END_SRC
 * other settings
+** spacing and tabs
+#+BEGIN_SRC emacs-lisp
+  (setq tab-width 2)
+  (setq-default indent-tabs-mode nil)
+#+END_SRC
+** follow symlinks
+#+BEGIN_SRC emacs-lisp
+  (setq vc-follow-symlinks t)
+#+END_SRC
+** electric pairs
+#+BEGIN_SRC emacs-lisp
+  (setq electric-pair-pairs '(
+			      (?\( . ?\))
+			      (?\[ . ?\])
+			      (?\{ . ?\})
+			      (?\" . ?\")
+			      ))
+  (electric-pair-mode t)
+#+END_SRC
+** minor settings
 #+BEGIN_SRC emacs-lisp
   (setq inhibit-startup-message t)
   (setq scroll-conservatively 100)
   (setq ring-bell-function 'ignore)
   (setq make-backup-file nil)
   (setq auto-save-default nil)
+  (setq-default indent-tabs-mode nil)
+#+END_SRC
+* buffer settings
+** enable ibuffer
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "C-x C-b") 'ibuffer)
+  (setq ibuffer-expert t)
+#+END_SRC
+** mode specific rebinds
+#+BEGIN_SRC emacs-lisp
+;;  (define-key ibuffer-mode-map (kbd "C-k") nil)
+#+END_SRC
+** switching buffers
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "C-x b") 'ido-switch-buffer)
+#+END_SRC
+** kill current buffer
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "C-c k") 'kill-current-buffer)
 #+END_SRC
 * unsetting and resetting movement keys
 #+BEGIN_SRC emacs-lisp
@@ -67,4 +166,62 @@
   (define-key org-mode-map (kbd "C-j") nil)
 #+END_SRC
 
+* convenience functions
+** reload-config
+#+BEGIN_SRC emacs-lisp
+  (defun config-reload ()
+    (interactive)
+    (org-babel-load-file (expand-file-name "~/.emacs.d/config.org")))
+  (global-set-key (kbd "C-c r") 'config-reload)
+#+END_SRC
+** edit-config
+ #+BEGIN_SRC emacs-lisp
+   (defun config-edit ()
+     (interactive)
+     (find-file "~/.emacs.d/config.org"))
+   (global-set-key (kbd "C-c e") 'config-edit)
+ #+END_SRC
+** kill-whole-word
+#+BEGIN_SRC emacs-lisp
+  (defun kill-whole-word ()
+    (interactive)
+    (backward-word)
+    (kill-word 1))
 
+  (global-set-key (kbd "C-c w") 'kill-whole-word)
+#+END_SRC
+** kill-current-buffer
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "C-x k") 'kill-current-buffer)
+#+END_SRC
+** copy-whole-line
+#+BEGIN_SRC emacs-lisp
+  (defun copy-whole-line ()
+    (interactive)
+    (save-excursion
+      (kill-new
+       (buffer-substring
+	(point-at-bol)
+	(point-at-eol)))))
+  (global-set-key (kbd "C-c y") 'copy-whole-line)
+#+END_SRC
+* auto completion
+#+BEGIN_SRC emacs-lisp
+  (use-package company
+    :ensure t
+    :init
+    (add-hook 'after-init-hook 'global-company-mode))
+#+END_SRC
+* mode line
+** disable minor modes on modeline
+#+BEGIN_SRC emacs-lisp
+  (use-package diminish
+    :ensure t
+    :init
+    (diminish 'hungry-delete-mode)
+    (diminish 'beacon-mode)
+    (diminish 'which-key-mode)
+    (diminish 'company-mode)
+    (diminish 'subword-mode)
+    (diminish 'rainbow-mode))
+#+END_SRC
