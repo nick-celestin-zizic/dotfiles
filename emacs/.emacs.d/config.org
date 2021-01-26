@@ -97,7 +97,7 @@
 * other settings
 ** spacing and tabs
 #+BEGIN_SRC emacs-lisp
-  (setq tab-width 2)
+  (setq-default tab-width 2)
   (setq-default indent-tabs-mode nil)
 #+END_SRC
 ** follow symlinks
@@ -113,6 +113,12 @@
 			      (?\" . ?\")
 			      ))
   (electric-pair-mode t)
+#+END_SRC
+** higlight matching pairs
+#+BEGIN_SRC emacs-lisp
+  (require 'paren)
+  (setq show-paren-style 'parenthesis)
+  (show-paren-mode 1)
 #+END_SRC
 ** minor settings
 #+BEGIN_SRC emacs-lisp
@@ -164,6 +170,8 @@
   (unbind-key "C-k" org-mode-map)
   (unbind-key "C-j" lisp-interaction-mode-map)
   (define-key org-mode-map (kbd "C-j") nil)
+
+  (global-set-key (kbd "C-'") 'recenter-top-bottom)
 #+END_SRC
 
 * convenience functions
@@ -188,7 +196,7 @@
     (backward-word)
     (kill-word 1))
 
-  (global-set-key (kbd "C-c w") 'kill-whole-word)
+  (global-set-key (kbd "C-c C-w") 'kill-whole-word)
 #+END_SRC
 ** kill-current-buffer
 #+BEGIN_SRC emacs-lisp

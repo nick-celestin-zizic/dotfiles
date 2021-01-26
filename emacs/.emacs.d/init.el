@@ -10,9 +10,6 @@
   (package-install 'use-package))
 
 ;; manually installing theme
-(unless (package-installed-p 'molokai-theme)
-  (package-refresh-contents)
-  (package-install 'molokai-theme))
 
 ;; fixes packages not downloading
 (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")

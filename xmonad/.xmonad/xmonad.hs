@@ -71,7 +71,7 @@ myTerminal      = "st"      -- Sets default terminal
 myTextEditor    = "vim"     -- Sets default text editor
 myBrowser       = "brave-browser"   -- sets default browser
 myFileManager   = "pcmanfm"
-myBorderWidth   = 2         -- Sets border width for windows
+myBorderWidth   = 0         -- Sets border width for windows
 myWindowGap     = 0
 
 main = do
