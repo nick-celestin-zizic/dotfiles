@@ -4,8 +4,6 @@ HISTSIZE=1000000
 SAVEHIST=1000000
 HISTFILE=~/.zsh_history
 
-#export PATH=$PATH$( find $HOME/Scripts/ -type d -printf ":%p" )
-
 # adding stuff to PATH
 export PATH=~/Programming/Odin/Compiler:~/.local/bin:$PATH
 #FZF
@@ -50,7 +48,7 @@ preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
 # aliases
 alias ls="ls -a --color=auto"
-alias c="clear;"
+alias c="clear"
 alias off="sudo shutdown now"
 function mkcd(){mkdir $1; cd $1}
 
