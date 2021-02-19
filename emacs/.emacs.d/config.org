@@ -189,7 +189,6 @@
 
   (global-set-key (kbd "C-'") 'recenter-top-bottom)
 #+END_SRC
-
 * convenience functions
 ** load shell PATH
 #+BEGIN_SRC emacs-lisp

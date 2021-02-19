@@ -1,8 +1,8 @@
 PS1='%F{205}[%f%F{112}%~% %f%F{205}]%f '
 
-HISTSIZE=10000000
-SAVEHIST=10000000
-HISTFILE=~/.cache/zsh/history
+HISTSIZE=1000000
+SAVEHIST=1000000
+HISTFILE=~/.zsh_history
 
 #export PATH=$PATH$( find $HOME/Scripts/ -type d -printf ":%p" )
 
@@ -53,7 +53,6 @@ alias ls="ls -a --color=auto"
 alias c="clear;"
 alias off="sudo shutdown now"
 function mkcd(){mkdir $1; cd $1}
-function commit(){git add $1 && git commit -m $2}
 
 # startup 
 ufetch
