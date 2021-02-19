@@ -1,5 +1,10 @@
 * packages
 ** melpa
+*** ispell
+#+BEGIN_SRC emacs-lisp
+  (use-package ispell
+    :ensure t)
+#+END_SRC
 *** popup-kill-ring
 #+BEGIN_SRC emacs-lisp
   (use-package popup-kill-ring
@@ -48,7 +53,11 @@
 #+BEGIN_SRC emacs-lisp
   (setq org-src-window-setup 'current-window)
   (add-to-list 'org-structure-template-alist
-	       '("el" "#+BEGIN_SRC emacs-lisp\n?\n#+END_SRC"))
+               '("el" "#+BEGIN_SRC emacs-lisp\n?\n#+END_SRC"))
+
+  (with-eval-after-load 'org
+    (setq org-startup-indented t)
+    (add-hook 'org-mode-hook #'visual-line-mode))
 #+END_SRC
 *** fancy bullets
 #+BEGIN_SRC emacs-lisp
@@ -79,10 +88,16 @@
   (use-package smex
     :ensure t
     :init (smex-initialize)
-    :bind
-    ("M-x" . smex))
+    :bind ("M-x" . smex))
 #+END_SRC
 * minor mode settings
+** programming modes
+*** haskell-mode
+#+BEGIN_SRC emacs-lisp
+  (use-package haskell-mode
+    :ensure t)
+#+END_SRC
+
 #+BEGIN_SRC emacs-lisp
   (menu-bar-mode   -1)
   (tool-bar-mode   -1)
@@ -125,7 +140,7 @@
   (setq inhibit-startup-message t)
   (setq scroll-conservatively 100)
   (setq ring-bell-function 'ignore)
-  (setq make-backup-file nil)
+  (setq make-backup-files nil)
   (setq auto-save-default nil)
   (setq-default indent-tabs-mode nil)
 #+END_SRC
@@ -165,7 +180,8 @@
   (global-set-key (kbd "C-l") 'forward-char)
 
   (global-set-key (kbd "C-p") 'eval-print-last-sexp)
-  (global-set-key (kbd "C-d") 'kill-whole-line)
+
+  (bind-key "C-d" 'kill-whole-line)
 
   (unbind-key "C-k" org-mode-map)
   (unbind-key "C-j" lisp-interaction-mode-map)
@@ -175,6 +191,12 @@
 #+END_SRC
 
 * convenience functions
+** load shell PATH
+#+BEGIN_SRC emacs-lisp
+  (use-package exec-path-from-shell
+    :ensure t
+    :config (exec-path-from-shell-initialize))
+#+END_SRC   
 ** reload-config
 #+BEGIN_SRC emacs-lisp
   (defun config-reload ()
@@ -232,4 +254,15 @@
     (diminish 'company-mode)
     (diminish 'subword-mode)
     (diminish 'rainbow-mode))
+#+END_SRC
+* fonts
+** fira
+#+BEGIN_SRC emacs-lisp
+  (add-to-list 'default-frame-alist '(font . "Fira Code-12"))
+
+  (use-package fira-code-mode
+    :ensure t
+    :custom (fira-code-mode-disabled-ligatures '("[]" "x"))
+    :hook prog-mode)
+
 #+END_SRC

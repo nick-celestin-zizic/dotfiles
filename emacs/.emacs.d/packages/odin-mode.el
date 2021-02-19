@@ -50,7 +50,7 @@
     table))
 
 (defconst odin-builtins
-  '("len" "cap"
+  '("len" "cap" "raw_data"
     "typeid_of" "type_info_of"
     "swizzle" "complex" "real" "imag" "quaternion" "conj"
     "jmag" "kmag"

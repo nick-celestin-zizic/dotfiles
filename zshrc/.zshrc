@@ -4,9 +4,10 @@ HISTSIZE=10000000
 SAVEHIST=10000000
 HISTFILE=~/.cache/zsh/history
 
-#Scripts
 #export PATH=$PATH$( find $HOME/Scripts/ -type d -printf ":%p" )
 
+# adding stuff to PATH
+export PATH=~/Programming/Odin/Compiler:~/.local/bin:$PATH
 #FZF
 export FZF_DEFAULT_COMMAND='find ~'
 
@@ -49,9 +50,8 @@ preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
 # aliases
 alias ls="ls -a --color=auto"
-alias vim="nvim"
 alias c="clear;"
-alias off="shutdown now"
+alias off="sudo shutdown now"
 function mkcd(){mkdir $1; cd $1}
 function commit(){git add $1 && git commit -m $2}
 
