@@ -86,7 +86,7 @@ main = do
         , borderWidth        = fromInteger myBorderWidth
         , normalBorderColor  = "#292d3e"
         , focusedBorderColor = "#bbc5ff"
-        } `additionalKeysP`         myKeys 
+        } `additionalKeysP` myKeys 
 
 ------------------------------------------------------------------------
 ---AUTOSTART
@@ -175,6 +175,7 @@ myKeys =
         , ("M4-C-b", spawn myBrowser)
         , ("M4-C-f", spawn myFileManager)
         , ("M4-C-d", spawn "discord")
+        , ("M4-C-e", spawn "emacs")
         , ("M4-C-w", spawn "feh --bg-fill -z -r ~/Pictures/wallpapers") 
         , ("M4-C-h", spawn (myTerminal ++ " -e htop --sort-key=PERCENT_MEM"))
         , ("M4-C-v", spawn (myTerminal ++ " -e nvim"))
@@ -183,7 +184,7 @@ myKeys =
         , ("<XF86AudioMute>",        spawn "amixer set Master toggle")
         , ("<XF86AudioLowerVolume>", spawn "amixer set Master 5%- unmute")
         , ("<XF86AudioRaiseVolume>", spawn "amixer set Master 5%+ unmute")
-        ] 
+        ]
                 
 ------------------------------------------------------------------------
 ---WORKSPACES
