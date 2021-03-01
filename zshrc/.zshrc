@@ -51,7 +51,8 @@ alias ls="ls -a --color=auto"
 alias c="clear"
 alias off="sudo shutdown now"
 function mkcd(){mkdir $1; cd $1}
-function commit(){git add -A && git commit -m $1}
+function commit() {git add -A && git commit -m $1}
+function commit!(){git add -A && git commit -m $1 && git push}
 
 # startup 
 ufetch
