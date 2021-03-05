@@ -1,7 +1,8 @@
 ;; setting up melpa
 (require 'package)
 (setq package-enable-at-startup nil)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+(setq package-archives '(("melpa" . "https://melpa.org/packages/")
+                         ("gnu" .   "http://elpa.gnu.org/packages/")))
 (package-initialize)
 
 ;; bootstrapping use-lackage
@@ -36,7 +37,7 @@
  '(line-spacing 0.2)
  '(linum-format " %5i ")
  '(package-selected-packages
-   '(haskell-mode fira-code-mode popup-kill-ring diminish kaolin-themes tangotango-theme naysayer-theme poet-theme company dashboard sudo-edit hungry-delete rainbow-mode rainbow avy smex ido-vertical-mode ido-vertical-mod org-bullets beacon molokai-theme use-package))
+   '(lsp-mode ht gnu-elpa-keyring-update rustic haskell-mode fira-code-mode popup-kill-ring diminish kaolin-themes tangotango-theme naysayer-theme poet-theme company dashboard sudo-edit hungry-delete rainbow-mode rainbow avy smex ido-vertical-mode ido-vertical-mod org-bullets beacon molokai-theme use-package))
  '(pos-tip-background-color "#1d1d2b")
  '(pos-tip-foreground-color "#d4d4d6"))
 (custom-set-faces
