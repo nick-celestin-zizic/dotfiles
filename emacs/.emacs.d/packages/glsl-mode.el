@@ -299,7 +299,8 @@ are added to the `glsl-builtin-list' and are fontified using the
 
   (defvar glsl-preprocessor-directive-list
     '("define" "undef" "if" "ifdef" "ifndef" "else" "elif" "endif"
-      "error" "pragma" "extension" "version" "line"))
+      "error" "pragma" "extension" "version" "line"
+      "shader_vertex" "shader_fragment" "shader_geometry"))
 
   (defvar glsl-preprocessor-expr-list
     '("defined" "##"))

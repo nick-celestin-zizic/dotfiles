@@ -81,7 +81,7 @@ main = do
         , modMask            = myModMask
         , terminal           = myTerminal
         , startupHook        = myStartupHook
-        , layoutHook         = myLayoutHook 
+        , layoutHook         = myLayoutHook
         , workspaces         = myWorkspaces
         , borderWidth        = fromInteger myBorderWidth
         , normalBorderColor  = "#292d3e"
@@ -91,27 +91,28 @@ main = do
 ------------------------------------------------------------------------
 ---AUTOSTART
 ------------------------------------------------------------------------
-myStartupHook = do
-          spawnOnce "urxvtd &" 
-          spawnOnce "nitrogen --restore &"
-          spawnOnce "picom --vsync -D 3 &"
-          spawnOnce "feh --bg-fill -z -r ~/Pictures/wallpapers"
-          spawnOnce "xsetroot -cursor_name left_ptr"
-          spawnOnce "xset s off"
-          setWMName "LG3D"
-          spawnOnce "~/.config/polybar/launch.sh &"
-
+myStartupHook = do --spawnOnce "urxvtd &" 
+                   --spawnOnce "nitrogen --restore &"
+                   spawnOnce "picom --vsync -D 3 &"
+                   spawnOnce "feh --bg-fill -z -r ~/Pictures/Wallpapers"
+                   spawnOnce "xrandr --output LVDS-1 --mode 1600x900 --scale 1x1 --output VGA-1 --auto --right-of LVDS-1 --mode 1920x1080 --scale 0.833x0.833"
+                   spawnOnce "xsetroot -cursor_name left_ptr"
+                   spawnOnce "xset s off"
+                   setWMName "LG3D"
+                   spawnOnce "~/.config/polybar/launch.sh &"
+  
 ------------------------------------------------------------------------
 ---KEYBINDINGS
 ------------------------------------------------------------------------
 myKeys =
     -- Xmonad
-        [ ("M-C-r", spawn "xmonad --recompile")      -- Recompiles xmonad
-        , ("M-S-r", spawn "xmonad --restart" >> spawn "~/.config/polybar/launch.sh &")        -- Restarts xmonad
+        [ ("M-C-r", spawn "xmonad --recompile && beep")      -- Recompiles xmonad
+        , ("M-S-r", spawn "xmonad --restart") -- Restarts xmonad
         , ("M-S-<Escape>", io exitSuccess)                  -- Quits xmonad
     
     -- Windows
         , ("M-S-c", kill1)                           -- Kill the currently focused client
+        , ("M-S-C-c", spawn "xkill")
         , ("M-S-a", killAll)                         -- Kill all the windows on current workspace
 
     -- Floating windows
@@ -168,8 +169,10 @@ myKeys =
         , ("M-S-0", windows copyToAll)
         , ("M-C-0", killAllOtherCopies)
 
-    -- Open Terminal
+    -- Utilities
         , ("M-<Return>", spawn myTerminal)
+        , ("<Print>", spawn "scrot -s -e 'mv $f ~/Pictures/Screenshots/'")
+        , ("M4-p", spawn "dmenu_run")
 
     -- My Applications (Super+Key)
         , ("M4-C-b", spawn myBrowser)
@@ -177,7 +180,7 @@ myKeys =
         , ("M4-C-d", spawn "discord")
         , ("M4-C-e", spawn "emacs")
         , ("M4-C-w", spawn "feh --bg-fill -z -r ~/Pictures/wallpapers") 
-        , ("M4-C-h", spawn (myTerminal ++ " -e htop --sort-key=PERCENT_MEM"))
+        , ("M4-C-m", spawn (myTerminal ++ " -e bashtop"))
         , ("M4-C-v", spawn (myTerminal ++ " -e nvim"))
 
     -- Multimedia Keys

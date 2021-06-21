@@ -1,0 +1,17 @@
+[Desktop Entry]
+Type=X-GNOME-Metatheme
+Name=Ceres-pro@2
+Comment=Simple style for MATE
+Encoding=UTF-8
+
+[X-GNOME-Metatheme]
+MetacityTheme=ceres-pro
+GtkTheme=ceres-pro@2
+IconTheme=hicolor
+CursorTheme=DMZ-White
+NotificationTheme=coco
+ApplicationFont=Noto Sans 8
+DocumentFont=Noto Sans 9
+DesktopFont=Noto Sans 8
+WindowTitleFont=Noto Sans 10
+FixedWidthFont=Noto Sans Mono 9

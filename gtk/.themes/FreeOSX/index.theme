@@ -1,0 +1,9 @@
+[X-GNOME-Metatheme]
+Name=FreeOSX
+Type=X-GNOME-Metatheme
+Comment=
+Encoding=UTF-8
+GtkTheme=FreeOSX
+MetacityTheme=FreeOSX
+IconTheme=Faenza
+ButtonLayout=close,minimize,maximize:

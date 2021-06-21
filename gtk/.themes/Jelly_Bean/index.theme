@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=X-GNOME-Metatheme
+Name=Jelly Bean
+Comment=Delicious
+Encoding=UTF-8
+
+[X-GNOME-Metatheme]
+Name=Jelly Bean
+GtkTheme=Jelly Bean
+MetacityTheme=Jelly_Bean

@@ -6,6 +6,10 @@ HISTFILE=~/.zsh_history
 
 # adding stuff to PATH
 export PATH=~/Programming/Odin/Compiler:~/.local/bin:$PATH
+export PATH=~/.guix-profile/bin:$PATH
+GUIX_PROFILE="/home/big/.config/guix/current"
+. "$GUIX_PROFILE/etc/profile"
+
 #FZF
 export FZF_DEFAULT_COMMAND='find ~'
 
@@ -50,9 +54,23 @@ preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 alias ls="ls -a --color=auto"
 alias c="clear"
 alias off="sudo shutdown now"
-function mkcd(){mkdir $1; cd $1}
-function commit() {git add -A && git commit -m $1}
-function commit!(){git add -A && git commit -m $1 && git push}
+alias inf202="ssh -i ~/.ssh/Nick_Zizic_INF_202 nzizic@myinf202.eastus.cloudapp.azure.com"
+alias dzen="dzen2 -p 1 -h 30 -bg #222222 -fg #FFFFFF -fn firacode"
+
+function mkcd() {
+    mkdir $1
+    cd $1
+}
+function commit() {
+    git add -A && git commit -m $1
+}
+function commit!(){
+    git add -A && git commit -m $1 && git push
+}
+function dzenmsg(){
+    # I have no clue why I can't just use the dzen alias here.
+    echo $1 | dzen2 -p 1 -h 30 -bg \#222222 -fg \#FFFFFF -fn firacode
+}
 
 # startup 
 ufetch

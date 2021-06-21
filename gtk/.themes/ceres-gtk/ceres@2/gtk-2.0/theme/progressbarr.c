@@ -1,0 +1,27 @@
+style"progressbar"{
+xthickness=0
+ythickness=0
+font_name="Sans 0"
+GtkProgressBar::xspacing=0
+GtkProgressBar::yspacing=0
+GtkProgressBar::min-horizontal-bar-height=24
+GtkProgressBar::min-horizontal-bar-width=200
+GtkProgressBar::min-vertical-bar-height=200
+GtkProgressBar::min-vertical-bar-width=24
+bg[NORMAL]=@bg_color
+engine"pixmap"{
+image{
+function=BOX
+detail="trough"
+file="images/colorspecific/normal-bg.svg"
+stretch=TRUE
+overlay_file="images/progressbar-trough.svg"
+overlay_border={10,10,10,10}
+overlay_stretch=TRUE}
+image{
+function=BOX
+detail="bar"
+file="images/colorspecific/progressbar-bar.svg"
+border={10,10,10,10}
+stretch=TRUE}}}
+class"GtkProgressBar"style"progressbar"

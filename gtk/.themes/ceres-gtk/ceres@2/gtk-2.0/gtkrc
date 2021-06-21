@@ -1,0 +1,55 @@
+###colors
+#window colors
+gtk_color_scheme="bg_color:#ececec\nfg_color:#333333\ninactive_fg_color:#a6a6a6"
+#base colors
+gtk_color_scheme="base_color:#ffffff\ntext_color:#000000\ninactive_text_color:#a6a6a6"
+#hilight colors
+gtk_color_scheme="selected_bg_color:#767676\nselected_base_color:#767676\nselected_fg_color:#ffffff\nselected_text_color:#ffffff"
+#url colors
+gtk_color_scheme="url_color:#4f79bf\nvisited_url_color:#b34fbf"
+#extra colors
+gtk_color_scheme="info_fg_color:#333333\nwarning_fg_color:#333333\nquestion_fg_color:#333333\nerror_fg_color:#333333\nother_fg_color:#333333"
+gtk_color_scheme="info_bg_color:#70a3e0\nwarning_bg_color:#de9d45\nquestion_bg_color:#a7a6a6\nerror_bg_color:#dc5050\nother_bg_color:#7ea454"
+gtk_color_scheme="error_color:#dc5050"
+gtk_color_scheme="tooltip_color:#454545"
+################################################################################
+###main stuff
+include "theme/allr.c"
+include "theme/buttonr.c"
+include "theme/colorbuttonr.c"
+include "theme/comboboxtextr.c"
+include "theme/optionmenur.c"
+include "theme/progressbarr.c"
+include "theme/entryr.c"
+include "theme/arrowr.c"
+include "theme/checkbuttonr.c"
+include "theme/radiobuttonr.c"
+include "theme/expanderr.c"
+include "theme/notebookr.c"
+include "theme/infobarr.c"
+include "theme/menubarr.c"
+include "theme/statusbarr.c"
+include "theme/tooltipr.c"
+include "theme/panedr.c"
+include "theme/treeviewr.c"
+include "theme/toolbarbuttonr.c"
+include "theme/linkbuttonr.c"
+include "theme/scrollbarr.c"
+include "theme/iconviewr.c"
+include "theme/framer.c"
+include "theme/scaler.c"
+include "theme/menur.c"
+include "theme/spinbuttonr.c"
+include "theme/colorselectiondialogr.c"
+include "theme/filechooserdialogr.c"
+#####extra
+include "theme/xtra-inkscaper.c"
+include "theme/xtra-gimpr.c"
+include "theme/xtra-roxfilerr.c"
+include "settings.ini"
+#####Docs
+### https://wiki.gnome.org/Attic/GnomeArt/Tutorials/GtkThemes
+### https://wiki.gnome.org/Attic/GnomeArt/Tutorials/GtkEngines/PixmapEngine
+### https://developer.gnome.org/gtk2/stable/index.html
+### http://www.orford.org/gtk/
+

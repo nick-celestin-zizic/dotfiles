@@ -1,3 +1,4 @@
+#+STARTUP: content
 * packages
 ** melpa
 *** exec-path-from-shell
@@ -69,6 +70,14 @@
      (haskell . t)))
 
   (setq org-babel-python-command "python3")
+
+  (setq org-babel-default-header-args
+        '((:session . "file")
+          (:results . "value")
+          (:cache   . "yes")
+          (:noweb   . "no")
+          (:hlines  . "no")
+          (:tangle  . "no")))
 #+end_src
 **** templates
 #+begin_src emacs-lisp
@@ -94,6 +103,8 @@
     (add-hook 'org-mode-hook #'visual-line-mode))
 
   (setq org-latex-tables-centered nil)
+
+  (setq user-full-name "Nick Celestin Zizic")
 #+end_src
 *** fancy bullets
 #+begin_src emacs-lisp
@@ -115,22 +126,23 @@
   (with-eval-after-load "ox-latex"
     (add-to-list 'org-latex-classes
                  '("article"
-                   "\\documentclass[12pt]{article}
+                   "\\documentclass[a4paper, 12pt]{article}
   \\usepackage[T1]{fontenc}
   \\usepackage{fontspec}
   \\usepackage{graphicx}
   \\usepackage{lipsum}
-  \\usepackage{geometry}
+  \\usepackage[left=1in,top=1in,right=1in,nohead,nofoot]{geometry}
+  \\usepackage[compact]{titlesec}
   \\defaultfontfeatures{Mapping=tex-text}
   \\setromanfont{Gentium}
   \\setromanfont [BoldFont={Gentium Basic Bold},
                   ItalicFont={Gentium Basic Italic}]{Gentium Basic}
   \\setsansfont{Charis SIL}
   \\setmonofont[Scale=0.8]{DejaVu Sans Mono}
-  \\geometry{a4paper, textwidth=6.5in, textheight=10in,
-              marginparsep=7pt, marginparwidth=.6in}
-  \\pagestyle{empty}
-  \\author{Nick Celestin Zizic}
+  \\geometry{a4paper, textwidth=8.5in, textheight=10in,
+              marginparsep=7pt, marginparwidth=1in}
+  \\pagestyle{fancy}
+  \\linespread{1.5}
         [NO-DEFAULT-PACKAGES]
         [NO-PACKAGES]"
                    ("\\section{%s}" . "\\section*{%s}")
@@ -145,6 +157,11 @@
                    ("\\section\{%s\}" . "\\section*\{%s\}")
                    ("\\subsection\{%s\}" . "\\subsection*\{%s\}")
                    ("\\subsubsection\{%s\}" . "\\subsubsection*\{%s\}"))))
+  (setq org-latex-title-command (concat
+                                 "\\vspace{-10ex}\n"
+                                 "{\\big \\noindent %a \\par}\n"
+                                 "{\\big \\noindent \\today \\par}\n"
+                                 "{\\huge \\noindent \\centering %t \\par}\n"))
 #+end_src
 ** ido
 *** enable ido
@@ -171,9 +188,14 @@
     :bind ("M-x" . smex))
 #+end_src
 ** shell
+*** Going through command history
 #+begin_src emacs-lisp
   (define-key shell-mode-map (kbd "C-p") 'comint-previous-input)
   (define-key shell-mode-map (kbd "C-n") 'comint-next-input)
+#+end_src
+*** Set shell to zsh
+#+begin_src emacs-lisp
+  (setq-default explicit-shell-file-name "/bin/zsh")
 #+end_src
 * minor mode settings
 ** display settings
