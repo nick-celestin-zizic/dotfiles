@@ -179,7 +179,7 @@ myKeys =
         , ("M4-C-f", spawn myFileManager)
         , ("M4-C-d", spawn "discord")
         , ("M4-C-e", spawn "emacs")
-        , ("M4-C-w", spawn "feh --bg-fill -z -r ~/Pictures/wallpapers") 
+        , ("M4-C-w", spawn "feh --bg-fill -z -r ~/Pictures/Wallpapers") 
         , ("M4-C-m", spawn (myTerminal ++ " -e bashtop"))
         , ("M4-C-v", spawn (myTerminal ++ " -e nvim"))
 

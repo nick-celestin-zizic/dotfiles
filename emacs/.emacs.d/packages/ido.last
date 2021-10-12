@@ -1,0 +1,46 @@
+;;; -*- coding: utf-8 -*-
+
+;; ----- ido-last-directory-list -----
+(
+ ("/home/big/Programming/Rust/rua/" . "src/")
+ ("/home/big/Programming/Rust/" . "rua/")
+ ("/home/big/Programming/" . "Rust/")
+ ("/home/big/" . "Programming/")
+ ("/home/big/Dotfiles/emacs/.emacs.d/" . "packages/")
+)
+
+;; ----- ido-work-directory-list -----
+(
+ "/home/big/Dotfiles/emacs/.emacs.d/packages/"
+ "/home/big/Programming/Rust/rua/src/"
+ "/home/big/Programming/Rust/rua/"
+)
+
+;; ----- ido-work-file-list -----
+(
+ "rust-mode.el"
+ "main.rs"
+ "tags"
+)
+
+;; ----- ido-dir-file-cache -----
+(
+ ("/home/big/Dotfiles/emacs/.emacs.d/packages/" (24785 15171 573251 730000) "ido.last" ".lsp-session-v1" "custom.el" "./" "elpa/" "recentf" "../" "smex-items" "rust-mode.el" "snippets/" "odin-mode.el" "glsl-mode.el")
+
+ ("/home/big/Dotfiles/emacs/.emacs.d/" (24785 14132 464356 923000) "config.tex" "init.el" "config.org" "./" "../" "config.pdf" "packages/")
+
+ ("/home/big/Programming/Rust/rua/src/" (24785 15241 967346 378000) "ldebug.rs" "lauxlib.rs" "luaconf.rs" "lprefix.rs" "./" "lib.rs" "main.rs" "lapi.rs" "lstate.rs" "lobject.rs" "../" "ldo.rs" "llimits.rs" "ltm.rs" "lfunc.rs")
+
+ ("/home/big/" (24785 15159 684900 271000) ".wicd/" ".steampath" ".guix-profile/" ".emacs.d/" ".rexim" ".cargo/" ".xsession-errors" ".hplip/" "Games/" ".wine/" ".zshenv" ".bash_history" "disown" ".java/" ".thumbnails/" ".bash_logout" ".local/" ".subversion/" ".cabal/" "=" ".ghci" ".xmobar/" ".Xresources" ".ftb/" ".zshrc" ".Wolfram/" "Programming/" ".mozilla/" "./" ".recently-used" "70-pcspkr-beep.rules" ".zsh_history" ".themes/" ".screenlayout" "Downloads/" ".python_history" ".viminfo" "2" "GPUCache/" "Videos/" "Pictures/" "archive-contents" ".ghc/" ".ssh/" ".rusty-tags/" ".wget-hsts" ".cache/" ".gkrellm2/" ".android/" "Dotfiles/" ".emulator_console_auth_token" ".config/" ".zoom/" ".audacity-data/" ".gitconfig" ".gtkrc-2.0" ".bashrc" ".Xauthority" ".WolframPlayer/" ".icons/" ".zprofile" "snap/" "Desktop/" ".pulse-cookie" ".zcompdump" ".mypy_cache/" "Mount/" ".rustup/" ".profile" ".install4j" ".gnupg/" "st/" "../" ".pki/" ".minecraft/" ".4dtris-scores" ".ssr/" ".steampid" ".fehbg" ".i3status.conf" ".steam/" ".tmux.conf" ".keras/" ".vimrc" ".vim/" ".aspell.en.pws" ".gnome/" ".npm/" ".texlive2018/" ".lesshst" ".gradle/" ".git/" ".xmonad/" ".aspell.en.prepl" "Documents/" ".gtk-bookmarks")
+
+ ("/home/big/Programming/Rust/rua/" (24784 4343 483222 930000) ".gitignore" "tags" "Cargo.toml" "./" "Cargo.lock" "target/" "src/" "../" ".git/" "LICENSE")
+
+ ("/home/big/Programming/Rust/" (24768 21390 499965 20000) "rua/" "./" "opengl/" "category-theory-stuff/" "simple-interpreter/" "../")
+
+ ("/home/big/Programming/" (24732 36069 86731 946000) "shhhhhh.gek" "Java/" "Haskell/" "./" "Rust/" "../" "C++/" "Android/" "Odin/" "Lua/" "Python/")
+
+ ("/home/big/.emacs.d/packages/elpa/toml-mode-20161107.1800/" (24785 14064 171553 975000) "toml-mode.elc" "toml-mode.el" "./" "toml-mode-autoloads.el" "../" "toml-mode-pkg.el")
+)
+
+;; ----- ido-unc-hosts-cache -----
+t

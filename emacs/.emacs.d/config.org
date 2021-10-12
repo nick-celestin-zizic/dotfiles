@@ -49,6 +49,36 @@
     :ensure t
     :init (rainbow-mode))
 #+end_src
+*** lsp-mode
+#+begin_src emacs-lisp
+
+  (use-package lsp-mode
+     :commands lsp
+     :hook (prog-mode . lsp-mode))
+
+  (use-package lsp-ui)
+
+#+end_src
+*** flycheck
+#+begin_src emacs-lisp
+  (use-package flycheck
+    :hook
+    (prog-mode . flycheck-mode))
+#+end_src
+*** company
+#+begin_src emacs-lisp
+  (use-package company
+    :hook
+    (prog-mode . company-mode)
+    :config
+    (setq company-tooltip-align-annotations t)
+    (setq company-minimum-prefix-length 1))
+#+end_src
+*** magit
+#+begin_src emacs-lisp
+      (use-package magit
+        :ensure t)
+#+end_src
 ** local
 *** odin-mode
 #+begin_src emacs-lisp
@@ -58,26 +88,34 @@
 #+begin_src emacs-lisp
   (load-file "~/.emacs.d/packages/glsl-mode.el")
 #+end_src
+*** pico8-mode
+#+begin_src emacs-lisp
+
+  (use-package lua-mode
+    :hook (lua-mode-hook . prog-mode-hook))
+  (load-file "~/.emacs.d/packages/pico8-mode.el")
+#+end_src
 * major mode settings
 ** org
 *** language support
 **** setup
 #+begin_src emacs-lisp
-  (setq org-confirm-babel-evaluate nil)
-  (org-babel-do-load-languages
-   'org-babel-load-languages
-   '((python . t)
-     (haskell . t)))
+    (setq org-confirm-babel-evaluate nil)
+    (org-babel-do-load-languages
+     'org-babel-load-languages
+     '((python . t)
+       (haskell . t)))
 
-  (setq org-babel-python-command "python3")
+    (setq org-babel-python-command "python3")
 
-  (setq org-babel-default-header-args
-        '((:session . "file")
-          (:results . "value")
-          (:cache   . "yes")
-          (:noweb   . "no")
-          (:hlines  . "no")
-          (:tangle  . "no")))
+    (setq org-babel-default-header-args
+          '((:session . "file")
+            (:results . "value")
+            (:cache   . "yes")
+            (:noweb   . "no")
+            (:hlines  . "no")
+            (:tangle  . "no")))
+  (setq flycheck-clang-ms-extensions t)
 #+end_src
 **** templates
 #+begin_src emacs-lisp
@@ -102,7 +140,7 @@
     (setq org-startup-indented t)
     (add-hook 'org-mode-hook #'visual-line-mode))
 
-  (setq org-latex-tables-centered nil)
+  (setq org-latex-tables-centered t)
 
   (setq user-full-name "Nick Celestin Zizic")
 #+end_src
@@ -115,53 +153,96 @@
 #+end_src
 *** LaTex stuff
 #+begin_src emacs-lisp
-  (setq org-latex-with-hyperref nil)
-  (setq org-latex-pdf-process 
-    '("xelatex -interaction nonstopmode %f"
-      "xelatex -interaction nonstopmode %f")) ;; for multiple passes
+  (setq org-latex-pdf-process
+        '("latexmk -pdflatex='pdflatex -interaction nonstopmode' -pdf -bibtex -f %f"))
 
-  (unless (boundp 'org-export-latex-classes)
-    (setq org-export-latex-classes nil))
 
-  (with-eval-after-load "ox-latex"
-    (add-to-list 'org-latex-classes
-                 '("article"
-                   "\\documentclass[a4paper, 12pt]{article}
+
+  (unless (boundp 'org-latex-classes)
+    (setq org-latex-classes nil))
+
+  (add-to-list 'org-latex-classes
+               '("ethz"
+                 "\\documentclass[a4paper,11pt,titlepage]{memoir}
+  \\usepackage[utf8]{inputenc}
   \\usepackage[T1]{fontenc}
-  \\usepackage{fontspec}
+  \\usepackage{fixltx2e}
   \\usepackage{graphicx}
-  \\usepackage{lipsum}
-  \\usepackage[left=1in,top=1in,right=1in,nohead,nofoot]{geometry}
-  \\usepackage[compact]{titlesec}
-  \\defaultfontfeatures{Mapping=tex-text}
-  \\setromanfont{Gentium}
-  \\setromanfont [BoldFont={Gentium Basic Bold},
-                  ItalicFont={Gentium Basic Italic}]{Gentium Basic}
-  \\setsansfont{Charis SIL}
-  \\setmonofont[Scale=0.8]{DejaVu Sans Mono}
-  \\geometry{a4paper, textwidth=8.5in, textheight=10in,
-              marginparsep=7pt, marginparwidth=1in}
-  \\pagestyle{fancy}
-  \\linespread{1.5}
+  \\usepackage{longtable}
+  \\usepackage{float}
+  \\usepackage{wrapfig}
+  \\usepackage{rotating}
+  \\usepackage[normalem]{ulem}
+  \\usepackage{amsmath}
+  \\usepackage{textcomp}
+  \\usepackage{marvosym}
+  \\usepackage{wasysym}
+  \\usepackage{amssymb}
+  \\usepackage{hyperref}
+  \\usepackage{mathpazo}
+  \\usepackage{color}
+  \\usepackage{enumerate}
+  \\definecolor{bg}{rgb}{0.95,0.95,0.95}
+  \\tolerance=1000
         [NO-DEFAULT-PACKAGES]
-        [NO-PACKAGES]"
-                   ("\\section{%s}" . "\\section*{%s}")
-                   ("\\subsection{%s}" . "\\subsection*{%s}")
-                   ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-                   ("\\paragraph{%s}" . "\\paragraph*{%s}")
-                   ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))
+        [PACKAGES]
+        [EXTRA]
+  \\linespread{1.1}
+  \\hypersetup{pdfborder=0 0 0}"
+                 ("\\chapter{%s}" . "\\chapter*{%s}")
+                 ("\\section{%s}" . "\\section*{%s}")
+                 ("\\subsection{%s}" . "\\subsection*{%s}")
+                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                 ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                 ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 
-                 ;; beamer class, for presentations
-                 '("presentation"
-                   "\\documentclass\[presentation\]\{beamer\}"
-                   ("\\section\{%s\}" . "\\section*\{%s\}")
-                   ("\\subsection\{%s\}" . "\\subsection*\{%s\}")
-                   ("\\subsubsection\{%s\}" . "\\subsubsection*\{%s\}"))))
-  (setq org-latex-title-command (concat
-                                 "\\vspace{-10ex}\n"
-                                 "{\\big \\noindent %a \\par}\n"
-                                 "{\\big \\noindent \\today \\par}\n"
-                                 "{\\huge \\noindent \\centering %t \\par}\n"))
+
+  (add-to-list 'org-latex-classes
+               '("article"
+                 "\\documentclass[11pt,a4paper]{article}
+  \\usepackage[utf8]{inputenc}
+  \\usepackage[T1]{fontenc}
+  \\usepackage{fixltx2e}
+  \\usepackage{graphicx}
+  \\usepackage{longtable}
+  \\usepackage{float}
+  \\usepackage{wrapfig}
+  \\usepackage{rotating}
+  \\usepackage[normalem]{ulem}
+  \\usepackage{amsmath}
+  \\usepackage{textcomp}
+  \\usepackage{marvosym}
+  \\usepackage{wasysym}
+  \\usepackage{amssymb}
+  \\usepackage{hyperref}
+  \\usepackage{mathpazo}
+  \\usepackage{color}
+  \\usepackage{enumerate}
+  \\definecolor{bg}{rgb}{0.95,0.95,0.95}
+  \\tolerance=1000
+        [NO-DEFAULT-PACKAGES]
+        [PACKAGES]
+        [EXTRA]
+  \\linespread{1.1}
+  \\hypersetup{pdfborder=0 0 0}"
+                 ("\\section{%s}" . "\\section*{%s}")
+                 ("\\subsection{%s}" . "\\subsection*{%s}")
+                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                 ("\\paragraph{%s}" . "\\paragraph*{%s}")))
+
+
+  (add-to-list 'org-latex-classes '("ebook"
+                                    "\\documentclass[11pt, oneside]{memoir}
+  \\setstocksize{9in}{6in}
+  \\settrimmedsize{\\stockheight}{\\stockwidth}{*}
+  \\setlrmarginsandblock{2cm}{2cm}{*} % Left and right margin
+  \\setulmarginsandblock{2cm}{2cm}{*} % Upper and lower margin
+  \\checkandfixthelayout
+  % Much more laTeX code omitted
+  "
+                                    ("\\chapter{%s}" . "\\chapter*{%s}")
+                                    ("\\section{%s}" . "\\section*{%s}")
+                                    ("\\subsection{%s}" . "\\subsection*{%s}")))
 #+end_src
 ** ido
 *** enable ido
@@ -198,6 +279,10 @@
   (setq-default explicit-shell-file-name "/bin/zsh")
 #+end_src
 * minor mode settings
+** snippet settings
+#+begin_src emacs-lisp
+  (setq yas-snippet-dirs '("~/emacs.d/snippets"))
+#+end_src
 ** display settings
 #+begin_src emacs-lisp
   (menu-bar-mode   -1)
@@ -211,32 +296,31 @@
   (when window-system (global-prettify-symbols-mode t))
 #+end_src
 ** programming modes
+*** rust
+#+begin_src emacs-lisp
+  (use-package toml-mode)
+
+  (use-package rust-mode
+    :hook (rust-mode . lsp-mode-hook)
+    :bind (("<tab>" . company-indent-or-complete-common)))
+
+
+  ;; Add keybindings for interacting with Cargo
+  (use-package cargo
+    :hook (rust-mode . cargo-minor-mode))
+
+  ;; Go to definition
+  (use-package racer
+    :hook (rust-mode . racer-mode))
+#+end_src
 *** haskell
 #+begin_src emacs-lisp
   (use-package haskell-mode
     :ensure t)
 #+end_src
-*** rust
+*** common lisp
 #+begin_src emacs-lisp
-  (use-package rustic
-    :ensure t
-    :bind (:map rustic-mode-map
-                ("M-j" . lsp-ui-imenu)
-                ("M-?" . lsp-find-references)
-                ("C-c C-c l" . flycheck-list-errors)
-                ("C-c C-c a" . lsp-execute-code-action)
-                ("C-c C-c r" . lsp-rename)
-                ("C-c C-c q" . lsp-workspace-restart)
-                ("C-c C-c Q" . lsp-workspace-shutdown)
-                ("C-c C-c s" . lsp-rust-analyzer-status))
-    :config
-    (setq rustic-format-on-save nil)
-    (add-hook 'rustic-mode-hook 'rk/rustic-mode-hook))
-
-  (defun rk/rustic-mode-hook ()
-    ;; so that run C-c C-c C-r works without having to confirm
-    (setq-local buffer-save-without-query t))
-  
+  (setq inferior-lisp-program "sbcl")
 #+end_src
 * other settings
 ** spacing and tabs
@@ -277,6 +361,11 @@
 #+begin_src emacs-lisp
   (setq revert-without-query '(".+"))
 #+end_src
+** compilation commands
+#+begin_src emacs-lisp
+  (global-set-key (kbd "C-M-<return>") 'compile)
+  (global-set-key (kbd "M-RET") 'recompile)
+#+end_src
 * buffer settings
 ** enable ibuffer
 #+begin_src emacs-lisp
@@ -311,8 +400,6 @@
   (global-set-key (kbd "C-j") 'next-line)
   (global-set-key (kbd "C-k") 'previous-line)
   (global-set-key (kbd "C-l") 'forward-char)
-
-  (global-set-key (kbd "C-p") 'eval-print-last-sexp)
 
   (bind-key "C-d" 'kill-whole-line)
 

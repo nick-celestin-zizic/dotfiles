@@ -9,6 +9,7 @@
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
+(setq use-package-always-ensure t)
 
 ;; manually installing theme
 
@@ -38,7 +39,7 @@
  '(line-spacing 0.2)
  '(linum-format " %5i ")
  '(package-selected-packages
-   '(lsp-mode ht gnu-elpa-keyring-update rustic haskell-mode fira-code-mode popup-kill-ring diminish kaolin-themes tangotango-theme naysayer-theme poet-theme company dashboard sudo-edit hungry-delete rainbow-mode rainbow avy smex ido-vertical-mode ido-vertical-mod org-bullets beacon molokai-theme use-package))
+   '(transient magit slime-mode slime lua-mode racer flycheck-rust cargo lsp-mode ht gnu-elpa-keyring-update haskell-mode fira-code-mode popup-kill-ring diminish kaolin-themes tangotango-theme naysayer-theme poet-theme company dashboard sudo-edit hungry-delete rainbow-mode rainbow avy smex ido-vertical-mode ido-vertical-mod org-bullets beacon molokai-theme use-package))
  '(pos-tip-background-color "#1d1d2b")
  '(pos-tip-foreground-color "#d4d4d6"))
 (custom-set-faces

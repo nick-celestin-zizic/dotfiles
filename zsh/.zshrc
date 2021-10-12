@@ -56,6 +56,7 @@ alias c="clear"
 alias off="sudo shutdown now"
 alias inf202="ssh -i ~/.ssh/Nick_Zizic_INF_202 nzizic@myinf202.eastus.cloudapp.azure.com"
 alias dzen="dzen2 -p 1 -h 30 -bg #222222 -fg #FFFFFF -fn firacode"
+alias trim="find ./ -name \"*.png\" -exec convert {} -trim {} \;"
 
 function mkcd() {
     mkdir $1
@@ -76,3 +77,4 @@ function dzenmsg(){
 ufetch
 
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
+source ~/Programming/C/emsdk/emsdk_env.sh &>/dev/null
