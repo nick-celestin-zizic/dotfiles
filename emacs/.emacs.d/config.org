@@ -95,6 +95,10 @@
     :hook (lua-mode-hook . prog-mode-hook))
   (load-file "~/.emacs.d/packages/pico8-mode.el")
 #+end_src
+*** oxide-mode
+#+begin_src emacs-lisp
+  (load-file "~/.emacs.d/packages/oxide-mode.el")
+#+end_src
 * major mode settings
 ** org
 *** language support
@@ -296,6 +300,11 @@
   (when window-system (global-prettify-symbols-mode t))
 #+end_src
 ** programming modes
+*** nim
+#+begin_src emacs-lisp
+  (use-package nim-mode
+    :ensure t)
+#+end_src
 *** rust
 #+begin_src emacs-lisp
   (use-package toml-mode)
@@ -321,6 +330,11 @@
 *** common lisp
 #+begin_src emacs-lisp
   (setq inferior-lisp-program "sbcl")
+#+end_src
+*** mips
+#+begin_src emacs-lisp
+  (use-package mips-mode
+    :ensure t)
 #+end_src
 * other settings
 ** spacing and tabs

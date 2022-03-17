@@ -204,7 +204,7 @@ are added to the `glsl-builtin-list' and are fontified using the
       "dmat2x3" "dmat2x4" "mat3x2" "mat3x3" "mat3x4" "dmat3x2" "dmat3x3"
       "dmat3x4" "mat4x2" "mat4x3" "mat4x4" "dmat4x2" "dmat4x3" "dmat4x4" "vec2"
       "vec3" "vec4" "ivec2" "ivec3" "ivec4" "bvec2" "bvec3" "bvec4" "dvec2"
-      "dvec3" "dvec4" "uint" "uvec2" "uvec3" "uvec4" "atomic_uint" 
+      "dvec3" "dvec4" "uint" "uvec2" "uvec3" "uvec4" "atomic_uint"
       "sampler1D" "sampler2D" "sampler3D" "samplerCube" "sampler1DShadow"
       "sampler2DShadow" "samplerCubeShadow" "sampler1DArray" "sampler2DArray"
       "sampler1DArrayShadow" "sampler2DArrayShadow" "isampler1D" "isampler2D"
